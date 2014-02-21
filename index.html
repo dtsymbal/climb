@@ -70,25 +70,23 @@
         }
     });
     document.addEventListener('deviceready', function() {
+        $("#info").html("device ready");
+        /*
         Parse.FacebookUtils.init({
             appId      : '1848100475328918', // Facebook App ID
             status     : true, // check login status
             cookie     : true, // enable cookies to allow Parse to access the session
             xfbml      : true  // parse XFBML
         });
+        */
         FB.init({
-            appId: 'appid',
+            appId: '1848100475328918',
             nativeInterface: CDV.FB,
             useCachedDialogs: false
         });
-
-        FB.getLoginStatus(handleStatusChange);
-
-        authUser();
-        updateAuthElements();
     });
     window.fbAsyncInit = function () {
-
+        $("#info").html("window.fbAsyncInit");
     };
 
     (function (d, s, id) {
@@ -103,6 +101,7 @@
     }(document, 'script', 'facebook-jssdk'));
 
     var fbLogin = function(){
+        $("#info").html("Login call");
         Parse.FacebookUtils.logIn(null, {
             success: function(user) {
                 if (!user.existed()) {

@@ -48,4 +48,8 @@
 	<preference name="detect-data-types" value="false" />
     <preference name="EnableViewportScale" value="false" />
 
+    <gap:plugin name="com.phonegap.plugins.facebookconnect">
+        <param name="APP_ID" value="1848100475328918" />
+        <param name="APP_NAME" value="Climb dev" />
+    </gap:plugin>
 </widget>
