@@ -1,164 +1,157 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-
-    <title>My Parse App</title>
-    <meta name="description" content="My Parse App">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="parse-1.2.16.min.js"></script>
-    <script type="text/javascript" src="phonegap.js"></script>
-    <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
-    <script type="text/javascript" src="facebook-js-sdk.js"></script>
 </head>
-
 <body>
+<button onclick="login()">Login</button>
+<button onclick="me()">Me</button>
+<!--<button onclick="getSession()">Get session</button>-->
+<button onclick="getLoginStatus()">Get login</button>
+<button onclick="logout()">Logout</button>
+<button onclick="facebookWallPost()">facebookWallPost</button>
+<button onclick="publishStoryFriend()">friendstory</button>
+
+<div id="data">loading ...</div>
+
+<!--<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>-->
 <div id="fb-root"></div>
-<div id="main">
-    <h1>You're ready to use Parse!</h1>
+<!-- cordova -->
+<script src="phonegap.js"></script>
+<!-- cordova facebook plugin -->
+<script src="cdv-plugin-fb-connect.js"></script>
+<!-- facebook js sdk -->
+<script src="facebook-js-sdk.js"></script>
 
-    <!--
-    <p>Read the documentation and start building your JavaScript app:</p>
-    <ul>
-        <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-        <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
-    -->
+<script>
+    <!-- These are the notifications that are displayed to the user through pop-ups if the above JS files does not exist in the same directory-->
+    if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
+    if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+    if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 
-    <h2>Facebook login</h2>
-    <button onclick="fbLogin();">Login</button>
-
-    <h2>File Upload</h2>
-    <input type="file" id="PhotoFileUpload">
-
-    <div id="info"></div>
-
-    <div style="display:none" class="error">
-        Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript
-        key correctly in the call to <code>Parse.initialize</code> in this file.
-    </div>
-
-    <div style="display:none" class="success">
-        <p>We've also just created your first object using the following code:</p>
-
-        <code>
-            var TestObject = Parse.Object.extend("TestObject");<br/>
-            var testObject = new TestObject();<br/>
-        </code>
-    </div>
-</div>
-
-<script type="text/javascript">
-    Parse.initialize("PHjWyI1neIdMLDoUwS90EFLttZzNp6mYN8cfSO8m", "56RkEAtfWj6zIpdXmKA3BuFQGpbCuJJsUQZ9Va6C");
-
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-    testObject.fetch({
-        success: function (data) {
-            $(".success").show();
-            $.each(data._serverData.results, function(id, object) {
-                $(".success").append('<p>foo: '+object.foo+'</p>');
-                if(object.hasOwnProperty('image') && object.image.hasOwnProperty('url')) {
-                    $(".success").append('<img src="'+object.image.url+'" width="200" />');
-                }
-            })
-
-            //console.log(data._serverData.results);
-            //console.log(data.attributes.results[3].image.url());
-        },
-        error: function () {
-            //console.log(arguments);
-        }
+    FB.Event.subscribe('auth.login', function(response) {
+        alert('auth.login event');
     });
-    document.addEventListener('deviceready', function() {
-        alert("deviceready");
-        FB.init({
-            appId: '1848100475328918',
-            nativeInterface: CDV.FB,
-            status     : true, // check login status
-            useCachedDialogs: false
-        });
+
+    FB.Event.subscribe('auth.logout', function(response) {
+        alert('auth.logout event');
     });
-    window.fbAsyncInit = function () {
-        alert("window.fbAsyncInit");
-    };
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    FB.Event.subscribe('auth.sessionChange', function(response) {
+        alert('auth.sessionChange event');
+    });
 
-    var fbLogin = function(){
-        $("#info").html("Login call");
-        FB.login(function(){
-            alert("Logged in");
-        });
-        /*
-        Parse.FacebookUtils.logIn(null, {
-            success: function(user) {
-                if (!user.existed()) {
-                    $("#info").html("User signed up and logged in through Facebook!");
-                } else {
-                    $("#info").html("User logged in through Facebook!");
-                }
-            },
-            error: function(user, error) {
-                $("#info").html("User cancelled the Facebook login or did not fully authorize.");
+    FB.Event.subscribe('auth.statusChange', function(response) {
+        alert('auth.statusChange event');
+    });
+
+    /*function getSession() {
+     alert("session: " + JSON.stringify(FB.getSession()));
+     }
+     */
+    function getLoginStatus() {
+        FB.getLoginStatus(function(response) {
+            if (response.status == 'connected') {
+                alert('logged in');
+            } else {
+                alert('not logged in');
             }
         });
-        */
-    };
-
-    $("#PhotoFileUpload").change(function(){
-        var fileUploadControl = $("#PhotoFileUpload")[0];
-        if (fileUploadControl.files.length > 0) {
-            var file = fileUploadControl.files[0];
-            var name = file.name;
-
-            var parseFile = new Parse.File(name, file);
-            parseFile.save().then(function(saved) {
-                file.url = saved._url;
-                file.name = saved._name;
-                var testObject = new TestObject();
-                testObject.save({
-                        foo: "bar",
-                        image: file
-                    }, {
-                    success: function(object) {
-                        $(".success").show();
-                        $(".success").prepend("saved");
-                        //console.log(object);
-                    },
-                    error: function(model, error) {
-                        $(".error").show();
-                    }
+    }
+    var friendIDs = [];
+    var fdata;
+    function me() {
+        FB.api('/me/friends', { fields: 'id, name, picture' },  function(response) {
+            if (response.error) {
+                alert(JSON.stringify(response.error));
+            } else {
+                var data = document.getElementById('data');
+                fdata=response.data;
+                console.log("fdata: "+fdata);
+                response.data.forEach(function(item) {
+                    var d = document.createElement('div');
+                    d.innerHTML = "<img src="+item.picture+"/>"+item.name;
+                    data.appendChild(d);
                 });
-            }, function(error) {
-                // The file either could not be read, or could not be saved to Parse.
-            });
-        }
-    });
-    /*
-     var testObject = new TestObject();
-     testObject.save({foo: "bar"}, {
-     success: function(object) {
-     $(".success").show();
-     console.log(object);
-     },
-     error: function(model, error) {
-     $(".error").show();
-     }
-     });
-     */
-</script>
-</body>
+            }
+            var friends = response.data;
+            console.log(friends.length);
+            for (var k = 0; k < friends.length && k < 200; k++) {
+                var friend = friends[k];
+                var index = 1;
 
+                friendIDs[k] = friend.id;
+                //friendsInfo[k] = friend;
+            }
+            console.log("friendId's: "+friendIDs);
+        });
+    }
+
+    function logout() {
+        FB.logout(function(response) {
+            alert('logged out');
+        });
+    }
+
+    function login() {
+        FB.login(
+                function(response) {
+                    if (response.session) {
+                        alert('logged in');
+                    } else {
+                        alert('not logged in');
+                    }
+                },
+                { scope: "email" }
+        );
+    }
+
+
+    function facebookWallPost() {
+        console.log('Debug 1');
+        var params = {
+            method: 'feed',
+            name: 'Facebook Dialogs',
+            link: 'https://developers.facebook.com/docs/reference/dialogs/',
+            picture: 'http://fbrell.com/f8.jpg',
+            caption: 'Reference Documentation',
+            description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+        };
+        console.log(params);
+        FB.ui(params, function(obj) { console.log(obj);});
+    }
+
+    function publishStoryFriend() {
+        randNum = Math.floor ( Math.random() * friendIDs.length );
+
+        var friendID = friendIDs[randNum];
+        if (friendID == undefined){
+            alert('please click the me button to get a list of friends first');
+        }else{
+            console.log("friend id: " + friendID );
+            console.log('Opening a dialog for friendID: ', friendID);
+            var params = {
+                method: 'feed',
+                to: friendID.toString(),
+                name: 'Facebook Dialogs',
+                link: 'https://developers.facebook.com/docs/reference/dialogs/',
+                picture: 'http://fbrell.com/f8.jpg',
+                caption: 'Reference Documentation',
+                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+            };
+            FB.ui(params, function(obj) { console.log(obj);});
+        }
+    }
+
+    document.addEventListener('deviceready', function() {
+        try {
+            alert('Device is ready! Make sure you set your app_id below this alert.');
+            FB.init({ appId: "appid", nativeInterface: CDV.FB, useCachedDialogs: false });
+            document.getElementById('data').innerHTML = "";
+        } catch (e) {
+            alert(e);
+        }
+    }, false);
+</script>
+<div id="log"></div>
+</body>
 </html>
