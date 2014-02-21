@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
-    <script type="text/javascript" src="/phonegap.js"></script>
-    <script type="text/javascript" src="/cordova.js"></script>
-    <script type="text/javascript" src="/cordova_plugins.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+    <script type="text/javascript" src="facebook-js-sdk.js"></script>
 </head>
 
 <body>
@@ -74,6 +74,14 @@
     });
     document.addEventListener('deviceready', function() {
         alert("deviceready");
+        FB.init({
+            appId: '1848100475328918',
+            nativeInterface: CDV.FB,
+            status     : true, // check login status
+            //cookie     : true, // enable cookies to allow the server to access the session
+            // xfbml: true,
+            useCachedDialogs: false
+        });
         /*
         Parse.FacebookUtils.init({
             appId      : '1848100475328918', // Facebook App ID
@@ -81,16 +89,11 @@
             cookie     : true, // enable cookies to allow Parse to access the session
             xfbml      : true  // parse XFBML
         });
-
-        FB.init({
-            appId: '1848100475328918',
-            nativeInterface: PG.FB,
-            useCachedDialogs: false
-        });
         */
+
     });
     window.fbAsyncInit = function () {
-        $("#info").html("window.fbAsyncInit");
+        alert("window.fbAsyncInit");
     };
 
     (function (d, s, id) {
