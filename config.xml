@@ -47,5 +47,5 @@
 	<preference name="stay-in-webview" value="false" />
 	<preference name="detect-data-types" value="false" />
     <preference name="EnableViewportScale" value="false" />
-	
+
 </widget>

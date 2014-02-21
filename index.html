@@ -69,13 +69,26 @@
             //console.log(arguments);
         }
     });
-    window.fbAsyncInit = function () {
+    document.addEventListener('deviceready', function() {
         Parse.FacebookUtils.init({
             appId      : '1848100475328918', // Facebook App ID
             status     : true, // check login status
             cookie     : true, // enable cookies to allow Parse to access the session
             xfbml      : true  // parse XFBML
         });
+        FB.init({
+            appId: 'appid',
+            nativeInterface: CDV.FB,
+            useCachedDialogs: false
+        });
+
+        FB.getLoginStatus(handleStatusChange);
+
+        authUser();
+        updateAuthElements();
+    });
+    window.fbAsyncInit = function () {
+
     };
 
     (function (d, s, id) {
