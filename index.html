@@ -30,6 +30,8 @@
     <h2>File Upload</h2>
     <input type="file" id="PhotoFileUpload">
 
+    <div id="info"></div>
+
     <div style="display:none" class="error">
         Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript
         key correctly in the call to <code>Parse.initialize</code> in this file.
@@ -91,13 +93,13 @@
         Parse.FacebookUtils.logIn(null, {
             success: function(user) {
                 if (!user.existed()) {
-                    alert("User signed up and logged in through Facebook!");
+                    $("#info").html("User signed up and logged in through Facebook!");
                 } else {
-                    alert("User logged in through Facebook!");
+                    $("#info").html("User logged in through Facebook!");
                 }
             },
             error: function(user, error) {
-                alert("User cancelled the Facebook login or did not fully authorize.");
+                $("#info").html("User cancelled the Facebook login or did not fully authorize.");
             }
         });
     };
