@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.webmotoric.phonegaptest" version="1.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.dmitriykerest.phonegaptest" version="1.0">
 
-	<name>Parse Test</name>
+	<name>Notification Test</name>
 	<description></description>
 	<author href="http://stuzo.com" email="dimitry@stuzo.com">Dmitriy Kerest</author>
 	
@@ -52,4 +52,6 @@
         <param name="APP_ID" value="1848100475328918" />
         <param name="APP_NAME" value="Climb dev" />
     </gap:plugin>
+
+    <gap:plugin name="org.apache.cordova.dialogs" />
 </widget>
