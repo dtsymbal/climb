@@ -73,7 +73,7 @@
         }
     });
     document.addEventListener('deviceready', function() {
-        $("#info").html("device ready");
+        alert("deviceready");
         /*
         Parse.FacebookUtils.init({
             appId      : '1848100475328918', // Facebook App ID
@@ -81,12 +81,13 @@
             cookie     : true, // enable cookies to allow Parse to access the session
             xfbml      : true  // parse XFBML
         });
-        */
+
         FB.init({
             appId: '1848100475328918',
-            nativeInterface: CDV.FB,
+            nativeInterface: PG.FB,
             useCachedDialogs: false
         });
+        */
     });
     window.fbAsyncInit = function () {
         $("#info").html("window.fbAsyncInit");
