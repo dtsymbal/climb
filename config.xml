@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.webmotoric.phonegaptest" version="1.0">
+
+	<name>Parse Test</name>
+	<description></description>
+	<author href="http://stuzo.com" email="dimitry@stuzo.com">Dmitriy Kerest</author>
+	
+	<icon src="57.png" width="57" height="57" />
+	<icon src="72.png" width="72" height="72" gap:platform="ios" />
+	<icon src="114.png" width="114" height="114" />
+	<icon src="144.png" width="144" height="144" />
+	
+	<icon src="36.png" width="36" height="36" gap:platform="android" gap:density="ldpi" />
+	<icon src="48.png" width="48" height="48" gap:platform="android" gap:density="mdpi" />
+	<icon src="72.png" width="72" height="72" gap:platform="android" gap:density="hdpi" />
+	<icon src="96.png" width="96" height="96" gap:platform="android" gap:density="xdpi" />
+	
+	<icon src="80.png" width="80" height="80" gap:platform="blackberry" />
+	<icon src="80.png" width="80" height="80" gap:platform="blackberry" gap:state="hover" />
+	
+	<icon src="48.png" width="48" height="48" gap:platform="winphone" />
+	<icon src="173.png" width="173" height="173" gap:platform="winphone" gap:role="background" />
+	
+	<icon src="64.png" width="64" height="64" gap:platform="webos" />
+	<icon src="32.png" width="32" height="32" gap:platform="webos" gap:role="mini" />
+			
+	<gap:splash src="320X480.png" width="320" height="480" />
+	<gap:splash src="480X320.png" width="480" height="320" />
+	<gap:splash src="640X960.png" width="640" height="960" />
+	<gap:splash src="960X640.png" width="960" height="640" />
+	<gap:splash src="640X1136.png" width="640" height="1136" />
+	<gap:splash src="1136X640.png" width="1136" height="640" />
+	<gap:splash src="768X1024.png" width="768" height="1024" />
+	<gap:splash src="1024X768.png" width="1024" height="768" />
+	<gap:splash src="2048X1496.png" width="2048" height="1496" />
+	<gap:splash src="1496X2048.png" width="1496" height="2048" />
+	<gap:splash src="1536X2008.png" width="1536" height="2008" />
+	<gap:splash src="2008X1536.png" width="2008" height="1536" />
+
+	<preference name="phonegap-version" value="3.3.0" />
+	<preference name="target-device" value="universal" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="prerendered-icon" value="true" />
+	<preference name="fullscreen" value="true" />
+	<preference name="autorotate" value="false" readonly="true" />
+	<preference name="disable-cursor" value="true" />
+	<preference name="stay-in-webview" value="false" />
+	<preference name="detect-data-types" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+	
+</widget>
