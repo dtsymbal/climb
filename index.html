@@ -84,6 +84,32 @@
 
         try{
             pushNotification = window.plugins.pushNotification;
+            if ( device.platform == 'android' || device.platform == 'Android' )
+            {
+                alert("android");
+                /*
+                pushNotification.register(
+                        successHandler,
+                        errorHandler, {
+                            "senderID":"replace_with_sender_id",
+                            "ecb":"onNotificationGCM"
+                        });
+                        */
+            }
+            else
+            {
+                alert("iOS");
+                /*
+                pushNotification.register(
+                        tokenHandler,
+                        errorHandler, {
+                            "badge":"true",
+                            "sound":"true",
+                            "alert":"true",
+                            "ecb":"onNotificationAPN"
+                        });
+                        */
+            }
         } catch(e){
             alert(e.message);
         }
