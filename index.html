@@ -26,8 +26,6 @@
         <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
     </ul>
     -->
-    <h2>Notification</h2>
-    <button onclick="notifyAlert();">Notify alert</button>
 
     <h2>Facebook login</h2>
     <button onclick="fbLogin();">Login</button>
@@ -85,15 +83,6 @@
         });
 
     });
-
-    var notifyAlert = function(){
-        alert("notifyAlert call");
-        try {
-            navigator.notification.alert("Blah!!!", function(){});
-        } catch(e){
-            alert(e.message);
-        }
-    };
 
     var fbLogin = function(){
         $("#info").html("Login call");
