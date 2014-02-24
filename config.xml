@@ -53,5 +53,5 @@
         <param name="APP_NAME" value="Climb dev" />
     </gap:plugin>
 
-    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>
