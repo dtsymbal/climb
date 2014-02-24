@@ -53,5 +53,9 @@
         <param name="APP_NAME" value="Climb dev" />
     </gap:plugin>
 
-    <gap:plugin name="org.apache.cordova.dialogs" />
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+
 </widget>
