@@ -60,36 +60,36 @@
 
 
 <script type="text/javascript">
-    Parse.initialize("PHjWyI1neIdMLDoUwS90EFLttZzNp6mYN8cfSO8m", "56RkEAtfWj6zIpdXmKA3BuFQGpbCuJJsUQZ9Va6C");
+//    Parse.initialize("PHjWyI1neIdMLDoUwS90EFLttZzNp6mYN8cfSO8m", "56RkEAtfWj6zIpdXmKA3BuFQGpbCuJJsUQZ9Va6C");
 
     var pushNotification = null;
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-    testObject.fetch({
-        success: function (data) {
-            $(".success").show();
-            $.each(data._serverData.results, function(id, object) {
-                $(".success").append('<p>foo: '+object.foo+'</p>');
-                if(object.hasOwnProperty('image') && object.image.hasOwnProperty('url')) {
-                    $(".success").append('<img src="'+object.image.url+'" width="200" />');
-                }
-            })
-
-            //console.log(data._serverData.results);
-            //console.log(data.attributes.results[3].image.url());
-        },
-        error: function () {
-            //console.log(arguments);
-        }
-    });
+//    var TestObject = Parse.Object.extend("TestObject");
+//    var testObject = new TestObject();
+//    testObject.fetch({
+//        success: function (data) {
+//            $(".success").show();
+//            $.each(data._serverData.results, function(id, object) {
+//                $(".success").append('<p>foo: '+object.foo+'</p>');
+//                if(object.hasOwnProperty('image') && object.image.hasOwnProperty('url')) {
+//                    $(".success").append('<img src="'+object.image.url+'" width="200" />');
+//                }
+//            })
+//
+//            //console.log(data._serverData.results);
+//            //console.log(data.attributes.results[3].image.url());
+//        },
+//        error: function () {
+//            //console.log(arguments);
+//        }
+//    });
     document.addEventListener('deviceready', function() {
         alert("deviceready");
-        FB.init({
-            appId: '1848100475328918',
-            nativeInterface: CDV.FB,
-            status     : true, // check login status
-            useCachedDialogs: false
-        });
+//        FB.init({
+//            appId: '1848100475328918',
+//            nativeInterface: CDV.FB,
+//            status     : true, // check login status
+//            useCachedDialogs: false
+//        });
 
         try{
             pushNotification = window.plugins.pushNotification;
@@ -99,7 +99,7 @@
                 pushNotification.register(
                         successHandler,
                         errorHandler, {
-                            "senderID":"919670712002",
+                            "senderID":"939790234612",
                             "ecb":"onNotificationGCM"
                         });
             }
