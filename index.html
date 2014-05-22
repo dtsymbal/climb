@@ -191,6 +191,7 @@
     }
 
     function tokenHandler (result) {
+        alert('tokenHandler');
         $("#app-status-ul").append('<li>token: '+ result +'</li>');
         console.log('iOS token:' + token);
         // Your iOS push server needs to know the token before it can push to this device
@@ -198,17 +199,20 @@
     }
 
     function successHandler (result) {
+        alert('successHandler');
         $("#app-status-ul").append('<li>success:'+ result +'</li>');
     }
 
     function errorHandler (error) {
+        alert('errorHandler');
+        alert(error);
         $("#app-status-ul").append('<li>error:'+ error +'</li>');
     }
     var fbLogin = function(){
-        $("#info").html("Login call");
-        FB.login(function(){
-            alert("Logged in");
-        });
+//        $("#info").html("Login call");
+//        FB.login(function(){
+//            alert("Logged in");
+//        });
         /*
         Parse.FacebookUtils.logIn(null, {
             success: function(user) {
